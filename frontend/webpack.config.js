@@ -13,33 +13,29 @@ module.exports = function webpackStuff(env) {
   if (env === 'production') plugins.push(new BabiliPlugin());
 
   return {
-    entry: [
-      './src/index.js',
-      './styles/app.css',
-    ],
+    entry: ['./src/index.js', './styles/app.css'],
     output: {
       filename: 'bundle.js',
       path: path.resolve(__dirname, './'),
     },
     module: {
-      rules: [{
-        test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-          presets: [
-            'es2015',
-          ],
-          plugins: [],
+      rules: [
+        {
+          test: /\.js$/,
+          loader: 'babel-loader',
+          query: {
+            presets: ['es2015', 'stage-2'],
+            plugins: [],
+          },
+          include: [path.resolve(__dirname, './')],
         },
-        include: [
-          path.resolve(__dirname, './'),
-        ],
-      }, {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: 'css-loader?importLoaders=1',
-        }),
-      }],
+        {
+          test: /\.css$/,
+          use: ExtractTextPlugin.extract({
+            use: 'css-loader?importLoaders=1',
+          }),
+        },
+      ],
     },
     plugins,
   };

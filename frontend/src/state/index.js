@@ -1,3 +1,6 @@
 export default {
-  num: 0,
+  login: {
+    password: '',
+    username: '',
+  },
 };
