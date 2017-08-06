@@ -1,6 +1,6 @@
 import { h } from 'hyperapp';
 
-export default ({ setUsername, setPassword, login, register, state }) => {
+export default ({ setEmail, setPassword, login, register, state }) => {
   return (
     <div class="login_form">
       <div class="ui middle aligned center aligned grid">
@@ -21,7 +21,7 @@ export default ({ setUsername, setPassword, login, register, state }) => {
                     type="text"
                     name="email"
                     placeholder="E-mail address"
-                    oninput={e => setUsername({ value: e.target.value })}
+                    oninput={e => setEmail({ value: e.target.value })}
                   />
                 </div>
               </div>
