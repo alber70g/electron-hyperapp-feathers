@@ -1,5 +1,6 @@
 // Place your settings in this file to overwrite default and user settings.
 {
   "files.defaultLanguage": "javascriptreact",
-  "prettier.trailingComma": "all"
+  "prettier.trailingComma": "all",
+  "prettier.singleQuote": true
 }
