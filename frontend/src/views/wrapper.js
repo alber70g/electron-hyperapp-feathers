@@ -12,5 +12,7 @@ export default (state, actions) =>
           setUsername={actions.setUsername}
           setPassword={actions.setPassword}
           login={actions.login}
+          register={actions.register}
         />}
+    {state.isLoading ? <h4>Loading</h4> : ''}
   </div>;

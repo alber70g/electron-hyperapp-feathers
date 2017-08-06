@@ -1,6 +1,6 @@
 import { h } from 'hyperapp';
 
-export default ({ setUsername, setPassword, login }) => {
+export default ({ setUsername, setPassword, login, register, state }) => {
   return (
     <div class="login_form">
       <div class="ui middle aligned center aligned grid">
@@ -13,7 +13,7 @@ export default ({ setUsername, setPassword, login }) => {
             <div class="content">Log-in to your account</div>
           </h2>
           <form class="ui large form">
-            <div class="ui stacked segment">
+            <div class="ui segment">
               <div class="field">
                 <div class="ui left icon input">
                   <i class="user icon" />
@@ -21,8 +21,7 @@ export default ({ setUsername, setPassword, login }) => {
                     type="text"
                     name="email"
                     placeholder="E-mail address"
-                    oninput={e =>
-                      setUsername({ value: e.target.value })}
+                    oninput={e => setUsername({ value: e.target.value })}
                   />
                 </div>
               </div>
@@ -33,25 +32,30 @@ export default ({ setUsername, setPassword, login }) => {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    oninput={e =>
-                      setPassword({ value: e.target.value })}
+                    oninput={e => setPassword({ value: e.target.value })}
                   />
                 </div>
               </div>
-              <div
-                class="ui fluid large teal submit button"
-                onclick={login}
-              >
-                Login
+              <div class="ui buttons">
+                <div class="ui primary submit button" onclick={login}>
+                  Login
+                </div>
+                <div class="or" />
+                <div class="ui teal submit button" onclick={register}>
+                  Register
+                </div>
               </div>
             </div>
 
-            <div class="ui error message" />
+            {state.message
+              ? <div class="ui error message visible">
+                  {state.message}
+                </div>
+              : ''}
           </form>
 
           <div class="ui message">
-            New to us? {' '}
-            <a href="#">Sign Up</a>
+            Made with &lt;3 by <a href="#">Space IT</a>
           </div>
         </div>
       </div>
