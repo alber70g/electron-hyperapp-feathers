@@ -9,4 +9,3 @@ export default feather
   .configure(rest('http://localhost:3030').axios(axios))
   .configure(hooks())
   .configure(auth());
-/*global window*/

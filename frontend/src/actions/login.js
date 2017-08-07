@@ -1,5 +1,7 @@
 import client from '../configuration/feathers';
 
+/* global window */
+
 export default {
   setEmail: (state, { login: actions }, { value }) => ({
     ...state,
@@ -57,19 +59,20 @@ export default {
       .service('users')
       .create({ strategy: 'local', email, password })
       .then(() => {
-        alert('user created');
+        window.alert('user created');
       })
       .catch(() => {
-        alert('an error occurred' + JSON.stringify(arguments));
+        window.alert(`an error occurred ${JSON.stringify(arguments)}`);
         actions.isLoading(false);
       });
+    return state;
   },
   isLoading: (state, { login: actions }, value) => ({
     ...state,
     isLoading: value,
   }),
   setToken: (state, { login: actions }, { accessToken }) => {
-    window.localStorage.setItem(location.host, accessToken);
+    window.localStorage.setItem(window.location.host, accessToken);
     return { ...state, accessToken };
   },
   setMessage: (state, { login: actions }, message) => ({

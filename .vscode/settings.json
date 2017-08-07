@@ -2,5 +2,7 @@
 {
   "files.defaultLanguage": "javascriptreact",
   "prettier.trailingComma": "all",
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2
 }

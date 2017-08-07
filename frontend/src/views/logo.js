@@ -1,5 +1,3 @@
 import { h } from 'hyperapp';
 
-export default () =>
-  <div>
-  </div>;
+export default () => <div />;

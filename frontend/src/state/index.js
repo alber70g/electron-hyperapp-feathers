@@ -1,5 +1,5 @@
-/*global window*/
-const token = window.localStorage.getItem(location.host);
+/* global window */
+const token = window.localStorage.getItem(window.location.host);
 
 export default {
   login: {
