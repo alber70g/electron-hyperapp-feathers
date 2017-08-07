@@ -13,6 +13,7 @@ module.exports = function webpackStuff(env) {
   if (env === 'production') plugins.push(new BabiliPlugin());
 
   return {
+    devtool: 'source-map',
     entry: ['./src/index.js', './styles/app.css'],
     output: {
       filename: 'bundle.js',

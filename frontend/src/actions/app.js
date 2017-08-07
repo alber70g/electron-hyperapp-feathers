@@ -12,7 +12,9 @@ export default {
   },
 
   deleteUser: state => {
-    client.service('users').remove(state.user.userId);
+    client.service('users').remove(state.user.userId).then(() => {
+      alert('user removed');
+    });
     return {
       ...state,
       user: undefined,

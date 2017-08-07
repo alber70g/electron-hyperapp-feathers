@@ -1,6 +1,6 @@
 import { h } from 'hyperapp';
-import Login from './login';
 // import Logo from './logo';
+import Login from './login';
 import App from './app/index';
 
 export default (state, { login: loginActions, app: appActions }) =>
