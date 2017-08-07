@@ -32,9 +32,7 @@ export default {
         actions.isLoading(false);
       })
       .catch(error => {
-        actions.setMessage('an error occurred: ' + error.message);
-      })
-      .finally(() => {
+        actions.setMessage(`an error occurred: ${error.message}`);
         actions.isLoading(false);
       });
     return {
@@ -47,7 +45,10 @@ export default {
     if (!state.login.email || !state.login.password) {
       return {
         ...state,
-        login: { ...state.login, message: 'Please fill in all fields' },
+        login: {
+          ...state.login,
+          message: 'Please fill in all fields',
+        },
       };
     }
     const { email, password } = login;
@@ -60,8 +61,6 @@ export default {
       })
       .catch(() => {
         alert('an error occurred' + JSON.stringify(arguments));
-      })
-      .finally(_ => {
         actions.isLoading(false);
       });
   },
