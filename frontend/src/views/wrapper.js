@@ -3,10 +3,10 @@ import Login from './login';
 // import Logo from './logo';
 import App from './app/index';
 
-export default (state, { login: loginActions }) =>
+export default (state, { login: loginActions, app: appActions }) =>
   <div>
     {state.accessToken
-      ? <App state={state} />
+      ? <App state={state} logout={appActions.logout} deleteUser={appActions.deleteUser} />
       : <Login
           state={state.login}
           setEmail={loginActions.setEmail}

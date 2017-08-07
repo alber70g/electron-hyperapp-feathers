@@ -4,5 +4,6 @@
   "prettier.trailingComma": "all",
   "prettier.singleQuote": true,
   "prettier.useTabs": false,
-  "prettier.tabWidth": 2
+  "prettier.tabWidth": 2,
+  "editor.tabSize": 2
 }

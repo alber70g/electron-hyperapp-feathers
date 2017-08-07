@@ -7,12 +7,12 @@ export default {
     ...state,
     login: { ...state.login, email: value },
   }),
-  setPassword: (state, { login: actions }, { value }) => {
-    return {
-      ...state,
-      login: { ...state.login, password: value },
-    };
-  },
+
+  setPassword: (state, { login: actions }, { value }) => ({
+    ...state,
+    login: { ...state.login, password: value },
+  }),
+
   login: (state, { login: actions }) => {
     if (!state.login.email || !state.login.password) {
       return {
@@ -32,6 +32,11 @@ export default {
       .then(response => {
         actions.setToken(response);
         actions.isLoading(false);
+        return client.passport.verifyJWT(response.accessToken);
+      })
+      .then(payload => client.service('users').get(payload.userId))
+      .then(user => {
+        actions.setUser(user);
       })
       .catch(error => {
         actions.setMessage(`an error occurred: ${error.message}`);
@@ -42,6 +47,9 @@ export default {
       login: { ...state.login, message: '' },
     };
   },
+
+  setUser: (state, action, user) => ({ ...state, user }),
+
   register: (state, { login: actions }) => {
     const { login } = state;
     if (!state.login.email || !state.login.password) {
@@ -60,6 +68,7 @@ export default {
       .create({ strategy: 'local', email, password })
       .then(() => {
         window.alert('user created');
+        actions.isLoading(false);
       })
       .catch(() => {
         window.alert(`an error occurred ${JSON.stringify(arguments)}`);
@@ -67,14 +76,17 @@ export default {
       });
     return state;
   },
+
   isLoading: (state, { login: actions }, value) => ({
     ...state,
     isLoading: value,
   }),
+
   setToken: (state, { login: actions }, { accessToken }) => {
     window.localStorage.setItem(window.location.host, accessToken);
     return { ...state, accessToken };
   },
+
   setMessage: (state, { login: actions }, message) => ({
     ...state,
     login: { ...state.login, message },
