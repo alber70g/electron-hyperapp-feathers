@@ -13,8 +13,8 @@ export default {
     login: { ...state.login, password: value },
   }),
 
-  login: (state, { login: actions }) => {
-    if (!state.login.email || !state.login.password) {
+  login: (state, { login: actions }) => { 
+   if (!state.login.email || !state.login.password) {
       return {
         ...state,
         login: { ...state.login, message: 'Please fill all fields' },
@@ -42,10 +42,6 @@ export default {
         actions.setMessage(`an error occurred: ${error.message}`);
         actions.isLoading(false);
       });
-    return {
-      ...state,
-      login: { ...state.login, message: '' },
-    };
   },
 
   setUser: (state, action, user) => ({ ...state, user }),
