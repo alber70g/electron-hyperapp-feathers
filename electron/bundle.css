@@ -1,0 +1,15 @@
+body {
+  background-color: #dadada;
+}
+.login_form .grid {
+  height: 100%;
+}
+.login_form  .image {
+  margin-top: -100px;
+}
+
+.login_form .column {
+  max-width: 450px;
+}
+
+/*# sourceMappingURL=bundle.css.map*/

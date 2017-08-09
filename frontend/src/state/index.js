@@ -1,7 +1,8 @@
 export default {
   login: {
     password: '',
-    username: '',
+    email: '',
     message: '',
   },
+  time: []
 };

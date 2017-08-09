@@ -6,7 +6,12 @@ import App from './app/index';
 export default (state, { login: loginActions, app: appActions }) =>
   <div>
     {state.accessToken
-      ? <App state={state} logout={appActions.logout} deleteUser={appActions.deleteUser} />
+      ? <App
+          state={state}
+          logout={appActions.logout}
+          deleteUser={appActions.deleteUser}
+          createTime={appActions.createTime}
+        />
       : <Login
           state={state.login}
           setEmail={loginActions.setEmail}

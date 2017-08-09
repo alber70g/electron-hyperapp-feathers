@@ -4,8 +4,8 @@ import axios from 'axios';
 import hooks from 'feathers-hooks';
 import auth from 'feathers-authentication-client';
 
-const feather = feathers();
-export default feather
+const client = feathers();
+export default client
   .configure(rest('http://localhost:3030').axios(axios))
   .configure(hooks())
   .configure(auth());
