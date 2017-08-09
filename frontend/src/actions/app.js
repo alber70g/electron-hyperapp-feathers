@@ -4,7 +4,7 @@ import client from '../configuration/feathers';
 
 export default {
   logout: state => {
-    window.localStorage.removeItem(window.location.host);
+    client.logout()
     return {
       ...state,
       accessToken: null,
