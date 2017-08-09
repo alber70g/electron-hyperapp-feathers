@@ -13,8 +13,8 @@ export default {
     login: { ...state.login, password: value },
   }),
 
-  login: (state, { login: actions }) => { 
-   if (!state.login.email || !state.login.password) {
+  login: (state, { login: actions }) => {
+    if (!state.login.email || !state.login.password) {
       return {
         ...state,
         login: { ...state.login, message: 'Please fill all fields' },
@@ -67,7 +67,9 @@ export default {
         actions.isLoading(false);
       })
       .catch(() => {
-        window.alert(`an error occurred ${JSON.stringify(arguments)}`);
+        window.alert(
+          `an error occurred ${JSON.stringify(arguments)}`,
+        );
         actions.isLoading(false);
       });
     return state;
