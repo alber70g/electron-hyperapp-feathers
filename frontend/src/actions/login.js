@@ -20,7 +20,7 @@ export default {
         login: { ...state.login, message: 'Please fill all fields' },
       };
     }
-    actions.isLoading(true);
+
     // better way of doing authentication including localStorage
     // https://github.com/feathersjs/feathers-authentication-client#complete-example
     client
@@ -30,18 +30,29 @@ export default {
         password: state.login.password,
       })
       .then(response => {
-        actions.setToken(response);
-        actions.isLoading(false);
+        console.log('response authenticate')
         return client.passport.verifyJWT(response.accessToken);
       })
-      .then(payload => client.service('users').get(payload.userId))
+      .then(payload => {
+        console.log('response verifyJWT')
+        return client.service('users').get(payload.userId)})
       .then(user => {
-        actions.setUser(user);
+        console.log('response get from user')
+        var x = x();
+        actions.setUser(user, x);
       })
       .catch(error => {
+        console.warn('catch error', error)
         actions.setMessage(`an error occurred: ${error.message}`);
+      })
+      .finally(() => {
+        console.log('finally')
         actions.isLoading(false);
       });
+    return {
+      ...state,
+      isLoading: true,
+    };
   },
 
   setUser: (state, action, user) => ({ ...state, user }),
@@ -64,26 +75,20 @@ export default {
       .create({ strategy: 'local', email, password })
       .then(() => {
         window.alert('user created');
-        actions.isLoading(false);
       })
       .catch(() => {
-        window.alert(
-          `an error occurred ${JSON.stringify(arguments)}`,
-        );
+        window.alert(`an error occurred ${JSON.stringify(arguments)}`);
+      })
+      .finally(() => {
         actions.isLoading(false);
       });
     return state;
   },
-
+  
   isLoading: (state, { login: actions }, value) => ({
     ...state,
     isLoading: value,
   }),
-
-  setToken: (state, { login: actions }, { accessToken }) => {
-    window.localStorage.setItem(window.location.host, accessToken);
-    return { ...state, accessToken };
-  },
 
   setMessage: (state, { login: actions }, message) => ({
     ...state,
