@@ -10,7 +10,6 @@ export default (state, { login: loginActions, app: appActions }) =>
           state={state}
           logout={appActions.logout}
           deleteUser={appActions.deleteUser}
-          createTime={appActions.createTime}
         />
       : <Login
           state={state.login}
