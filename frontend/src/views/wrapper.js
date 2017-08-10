@@ -1,16 +1,16 @@
 import { h } from 'hyperapp';
-// import Logo from './logo';
 import Login from './login';
 import App from './app/index';
 
+import client from '../configuration/feathers';
+
 export default (state, { login: loginActions, app: appActions }) =>
   <div>
-    {state.accessToken
+    {client.get('accessToken')
       ? <App
           state={state}
           logout={appActions.logout}
           deleteUser={appActions.deleteUser}
-          createTime={appActions.createTime}
         />
       : <Login
           state={state.login}

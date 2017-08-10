@@ -7,8 +7,10 @@
   "author": "Albert Groothedde <albertgroothedde@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "concurrently \"cd frontend && yarn start\" \"cd backend && yarn start\" \"cd electron && yarn start\"",
-    "install": "concurrently \"cd frontend && yarn\" \"cd backend && yarn\" \"cd electron && yarn\""
+    "start": "concurrently \"cd frontend && yarn start\" \"cd backend && yarn start\"",
+    "install": "concurrently \"cd frontend && yarn\" \"cd backend && yarn\"",
+    "install:electron": "\"cd electron && yarn\"",
+    "start:electron": "concurrently \"cd frontend && yarn start\" \"cd backend && yarn start\" \"cd electron && yarn start\""
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
